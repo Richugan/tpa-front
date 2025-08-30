@@ -1,0 +1,56 @@
+<div class="product-block-headers">
+  <div class="product-block-title">Explore Our Product Suite</div>
+
+  <app-divider></app-divider>
+  <div class="product-block-header">
+    Jorem ipsum dolor sit <span class="highlight">amet consectetur</span>
+  </div>
+  <div class="product-block-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+</div>
+<!-- Tabs -->
+<div class="tabs">
+  @for (tab of productTabs; track $index; let i = $index) {
+  <button class="tab" [class.active]="i === activeTabIndex" (click)="setActiveTab(i)">
+    {{ tab.title }}
+  </button>
+  }
+</div>
+
+<!-- Content -->
+@if (productTabs[activeTabIndex]; as active) {
+<div class="product-card">
+  <div class="product-image">
+    <img [src]="active.content.image" [alt]="active.content.heading" />
+  </div>
+  <div class="product-info">
+    <div class="product-info-header">{{ active.content.heading }}</div>
+    <div class="product-info-desc">{{ active.content.description }}</div>
+
+    <div class="bullets-list">
+      @for (bullet of active.content.bullets; track $index; let j = $index) {
+      <div class="bullet">{{ bullet }}</div>
+      }
+    </div>
+
+    <div class="card-actions">
+      <button class="btn btn-primary">{{ active.content.ctaPrimary }}</button>
+      @if(active.content.ctaSecondary) {
+      <a href="#"
+        >{{ active.content.ctaSecondary }}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="37"
+          height="16"
+          viewBox="0 0 37 16"
+          fill="none"
+        >
+          <path
+            d="M36.7071 8.70711C37.0976 8.31658 37.0976 7.68342 36.7071 7.29289L30.3431 0.928932C29.9526 0.538408 29.3195 0.538408 28.9289 0.928932C28.5384 1.31946 28.5384 1.95262 28.9289 2.34315L34.5858 8L28.9289 13.6569C28.5384 14.0474 28.5384 14.6805 28.9289 15.0711C29.3195 15.4616 29.9526 15.4616 30.3431 15.0711L36.7071 8.70711ZM0 8V9H36V8V7H0V8Z"
+            [attr.fill]="mainColor"
+          /></svg
+      ></a>
+      }
+    </div>
+  </div>
+</div>
+}

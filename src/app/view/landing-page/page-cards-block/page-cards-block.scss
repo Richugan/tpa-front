@@ -1,0 +1,40 @@
+:host {
+  padding: 3.75rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  align-items: stretch;
+
+  .page-cards-headers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    align-self: stretch;
+
+    .page-cards-title {
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--blackColor);
+      line-height: 110%; /* 2.2rem */
+    }
+
+    .page-cards-header {
+      text-align: center;
+      font-size: 4rem;
+      font-weight: 700;
+      line-height: 100%; /* 4rem */
+      color: var(--blackColor);
+    }
+
+    .highlight {
+      color: var(--mainColor);
+    }
+
+    .product-block-desc {
+      text-align: center;
+    }
+  }
+}

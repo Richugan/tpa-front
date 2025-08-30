@@ -1,0 +1,102 @@
+:host {
+  // font-family: inherit;
+  background-color: var(--whiteColor);
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 100%; /* 18px */
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 3.75rem;
+  gap: 4rem;
+}
+
+.logo {
+  cursor: pointer;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+
+  a {
+    color: var(--blackColor);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    text-decoration: none;
+
+    .arrow {
+      color: var(--mainHoverColor);
+    }
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+
+  .login {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--blackColor);
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  .btn {
+    display: flex;
+    min-height: 2.875rem;
+    padding: 4px 32px;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+
+    &.btn-primary {
+      background: var(--mainColor);
+      color: var(--whiteColor);
+      transition: background 0.3s;
+
+      &:hover {
+        background: var(--mainHoverColor);
+      }
+    }
+  }
+}
+
+.sidemenu-logo-button {
+  display: none;
+}
+
+//mobile view
+@media (width <= 480px) {
+  :host {
+    padding: 1rem 3rem;
+    .nav-links,
+    .nav-actions {
+      display: none;
+    }
+
+    .sidemenu-logo-button {
+      display: block;
+    }
+  }
+}
