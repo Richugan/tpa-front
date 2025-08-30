@@ -30,3 +30,13 @@ cd angular-project
 # Install dependencies
 npm install
 ```
+
+## ▶️ Running the Application
+
+```bash
+# Start development server
+ng serve
+
+# Open in browser
+http://localhost:4200/
+```
