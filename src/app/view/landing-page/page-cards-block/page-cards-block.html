@@ -6,5 +6,7 @@
 </div>
 
 <div class="page-card-content">
-  <app-page-card [card]="pageCards[0]"></app-page-card>
+  @for (card of pageCards; track $index; let i = $index) {
+  <app-page-card [card]="card"></app-page-card>
+  }
 </div>

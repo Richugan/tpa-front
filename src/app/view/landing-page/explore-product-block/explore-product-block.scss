@@ -115,6 +115,7 @@
         align-self: stretch;
 
         .bullet {
+          color: var(--blackColor);
           font-size: 1.125rem;
           width: 100%;
           padding-bottom: 1em;
@@ -195,6 +196,7 @@
     .tabs {
       justify-content: flex-start;
       overflow: scroll;
+      margin-right: -1rem;
 
       .tab {
         white-space: nowrap;
