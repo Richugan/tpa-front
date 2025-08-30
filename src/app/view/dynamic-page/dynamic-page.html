@@ -1,0 +1,78 @@
+<div class="wrap">
+  <div class="controls">
+    <input
+      class="search"
+      type="text"
+      placeholder="Search"
+      #q
+      (keyup.enter)="submitSearch(q.value)"
+    />
+  </div>
+
+  @if (loading()) {
+  <div class="grid">
+    @for (i of rangeHelper(postsPerPage); track i) {
+    <div class="card skeleton">
+      <div class="thumb"></div>
+      <div class="lines">
+        <span class="line"></span>
+        <span class="line short"></span>
+      </div>
+    </div>
+    }
+  </div>
+  } @else { @if (error()) {
+  <div class="error">
+    <span>{{ error() }}</span>
+  </div>
+  } @else {
+  <div class="grid">
+    @for (post of posts(); track $index) {
+
+    <!-- imitation of click on page with id 1 -->
+    <app-page-card [card]="post" [routerLink]="`1`"></app-page-card>
+    <!-- <app-page-card [card]="card" [routerLink]="`dynamic/${card.id}`"></app-page-card> -->
+
+    }
+  </div>
+
+  <div class="pager">
+    <button class="btn" (click)="setPage(page() - 1)" [disabled]="page() === 1">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+      >
+        <path
+          d="M14.9309 4L7.87372 11.0572C7.35302 11.5779 7.35302 12.4221 7.87372 12.9428L14.9309 20"
+          stroke="#00AB80"
+          stroke-width="3"
+          stroke-linecap="round"
+        />
+      </svg>
+    </button>
+    <span class="pageinfo"
+      ><span>{{ page() }}</span
+      ><span>/</span><span>{{ totalPages() }}</span></span
+    >
+    <button class="btn" (click)="setPage(page() + 1)" [disabled]="page() === totalPages()">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+      >
+        <path
+          d="M9.06909 4L16.1263 11.0572C16.647 11.5779 16.647 12.4221 16.1263 12.9428L9.06909 20"
+          stroke="#00AB80"
+          stroke-width="3"
+          stroke-linecap="round"
+        />
+      </svg>
+    </button>
+  </div>
+  } }
+</div>

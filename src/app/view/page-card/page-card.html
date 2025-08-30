@@ -2,12 +2,13 @@
   <img [src]="card.image" [alt]="card.title" />
 </div>
 <div class="info">
-  <div class="title">{{ card.title }}</div>
-  <div class="description">{{ card.description }}</div>
+  <div class="title" [innerHTML]="card.title"></div>
+  <!-- <span class="meta">{{ card.date | date : 'mediumDate' }}</span> -->
+  <div class="description" [innerHTML]="card.excerpt"></div>
 </div>
 
 <div class="actions">
-  <a [routerLink]="card.link"
+  <a
     >Read Case Study
     <svg xmlns="http://www.w3.org/2000/svg" width="37" height="16" viewBox="0 0 37 16" fill="none">
       <path

@@ -11,16 +11,4 @@ import { FaqBlock } from './faq-block/faq-block';
   templateUrl: './landing-page.html',
   styleUrl: './landing-page.scss',
 })
-export class LandingPage implements OnInit {
-  constructor(private wpService: WPService) {}
-
-  ngOnInit(): void {
-    this.getPosts();
-  }
-
-  getPosts() {
-    this.wpService.getPosts().subscribe((posts) => {
-      console.log(posts);
-    });
-  }
-}
+export class LandingPage {}
