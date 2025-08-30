@@ -1,0 +1,47 @@
+<div class="faq-title">Frequently Asked Questions</div>
+
+<div class="faq-list">
+  @for(faqItem of faqItems; track $index; let i = $index) {
+  <div class="faq-item" [class.open]="faqItem.open">
+    <div class="faq-item-inner">
+      <div
+        class="faq-head"
+        tabindex="0"
+        role="button"
+        aria-expanded="{{ faqItem.open ? 'true' : 'false' }}"
+        (click)="toggle(i)"
+      >
+        <span class="faq-q">{{ faqItem.question }}</span>
+      </div>
+
+      @if(faqItem.open){
+      <div class="faq-body">
+        <span class="faq-a">{{ faqItem.answer }}</span>
+      </div>
+      }
+    </div>
+    <div class="faq-arrow" aria-hidden="true" (click)="toggle(i)">
+      <span class="faq-icon">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="12"
+          viewBox="0 0 20 12"
+          fill="none"
+        >
+          <path
+            d="M18 2.06909L10.9428 9.12629C10.4221 9.64698 9.57789 9.64698 9.05719 9.12629L2 2.06909"
+            [attr.stroke]="mainColor"
+            stroke-width="3"
+            stroke-linecap="round"
+          />
+        </svg>
+      </span>
+    </div>
+  </div>
+  }
+</div>
+
+<div class="faq-cta">
+  <button class="btn btn-primary">Book A Discovery Call</button>
+</div>
