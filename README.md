@@ -41,8 +41,6 @@ ng serve
 http://localhost:4200/
 ```
 
-# Open in browser
-
 - Landing Page
 - Dynamic Page with posts from WP getted by REST API
 
