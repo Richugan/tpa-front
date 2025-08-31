@@ -59,4 +59,4 @@ ng test
 ng build --configuration production
 ```
 
-The output will be in the dist/ folder.
+- The output will be in the dist/ folder.
