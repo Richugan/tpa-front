@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PageCardsBlock } from './page-cards-block';
+import { RouterModule } from '@angular/router';
 
 describe('PageCardsBlock', () => {
   let component: PageCardsBlock;
@@ -8,9 +9,8 @@ describe('PageCardsBlock', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PageCardsBlock]
-    })
-    .compileComponents();
+      imports: [PageCardsBlock, RouterModule.forRoot([])],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(PageCardsBlock);
     component = fixture.componentInstance;

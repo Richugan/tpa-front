@@ -51,6 +51,9 @@ http://localhost:4200/
 ng test
 ```
 
+- I wrote a few unit tests to validate core interactions — FAQ items expand/collapse on toggle, and product tabs update their content when clicked.  
+  These tests keep our UI reliable and give confidence as the project grows.
+
 ## 🏗️ Build for Production
 
 ```bash
