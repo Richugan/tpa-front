@@ -40,3 +40,23 @@ ng serve
 # Open in browser
 http://localhost:4200/
 ```
+
+# Open in browser
+
+- Landing Page
+- Dynamic Page with posts from WP getted by REST API
+
+## 🧪 Running Tests
+
+```bash
+# Unit tests
+ng test
+```
+
+## 🏗️ Build for Production
+
+```bash
+ng build --configuration production
+```
+
+The output will be in the dist/ folder.
