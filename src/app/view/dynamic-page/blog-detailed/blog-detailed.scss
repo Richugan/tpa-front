@@ -1,0 +1,178 @@
+$post-max: 56.25rem;
+$brand: #00b57f;
+$text: #1a1a1a;
+$muted: #6b6b6b;
+$card: #f3f4f6;
+
+.post {
+  max-width: $post-max;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  color: $text;
+
+  .breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+
+    .crumb a {
+      text-decoration: none;
+      color: $muted;
+    }
+    .crumb.is-current {
+      color: $text;
+      font-weight: 600;
+    }
+    .sep {
+      color: $muted;
+    }
+  }
+
+  .hero-title {
+    text-align: center;
+    margin: 1rem 0 1.5rem;
+
+    .title {
+      font-size: 2.25rem;
+      font-weight: 800;
+      line-height: 1.15;
+    }
+    .underline {
+      width: 4.5rem;
+      height: 0.25rem;
+      background: $brand;
+      border-radius: 999px;
+      margin: 0.75rem auto 0;
+    }
+  }
+
+  .meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    color: $muted;
+
+    .author {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+
+      .avatar img {
+        width: 2.25rem;
+        height: 2.25rem;
+        border-radius: 50%;
+        display: block;
+      }
+      .name {
+        color: $text;
+        font-weight: 600;
+      }
+    }
+  }
+
+  .hero-image {
+    border-radius: 0.875rem;
+    overflow: hidden;
+    margin: 0 0 1.25rem 0;
+    background: $card;
+
+    img {
+      width: 100%;
+      display: block;
+    }
+  }
+
+  .content {
+    font-size: 1rem;
+    line-height: 1.75;
+
+    * {
+      max-width: 100%;
+    }
+    img {
+      width: 100%;
+      border-radius: 0.5rem;
+    }
+    a {
+      color: $brand;
+      text-decoration: none;
+    }
+    blockquote {
+      margin: 1rem 0;
+      padding: 1rem;
+      border-radius: 0.75rem;
+      background: linear-gradient(180deg, #ffffff, #eef1f5);
+      border: 0.0625rem solid rgba(0, 0, 0, 0.06);
+    }
+  }
+
+  .share {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 1.5rem 0;
+
+    .share-title {
+      color: $muted;
+    }
+    .icons {
+      display: inline-flex;
+      gap: 0.75rem;
+
+      a {
+        color: $brand;
+        text-decoration: none;
+        font-weight: 700;
+      }
+    }
+  }
+
+  .pager {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0 0 0;
+    border-top: 0.0625rem solid rgba(0, 0, 0, 0.08);
+    margin-top: 1.5rem;
+
+    a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: $brand;
+      text-decoration: none;
+      font-weight: 700;
+    }
+  }
+}
+
+.state {
+  max-width: $post-max;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  text-align: center;
+  color: $muted;
+
+  &.error {
+    color: #c0392b;
+  }
+}
+
+@media (max-width: 40rem) {
+  .post {
+    .hero-title .title {
+      font-size: 1.75rem;
+    }
+  }
+}
+
+::ng-deep {
+  app-blog-detailed {
+    a {
+      text-decoration: none;
+      color: var(--blackColor);
+    }
+  }
+}

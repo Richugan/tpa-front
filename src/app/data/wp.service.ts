@@ -6,6 +6,7 @@ import { WPPostRequestParams } from './wp-post-request-params';
 import { WPPost } from './wp-post';
 import { RenderedWPPost } from './rendered-wp-post';
 import { API_URL } from '../environments/dev.environmets';
+import { DomSanitizer } from '@angular/platform-browser';
 
 export interface WPPostResponse {
   posts: RenderedWPPost[];
@@ -19,7 +20,7 @@ export interface WPPostResponse {
   providedIn: 'root',
 })
 export class WPService {
-  constructor(private httpService: HttpService) {}
+  constructor(private httpService: HttpService, private sanitizer: DomSanitizer) {}
   private http = inject(HttpClient);
   private base = API_URL;
   private multiplier = 1;
@@ -60,15 +61,26 @@ export class WPService {
       id: post.id,
       title: post.title.rendered,
       excerpt: post.excerpt.rendered,
-      content: post.excerpt.rendered,
+      content: this.sanitizer.bypassSecurityTrustHtml(post.content?.rendered || ''),
       link: post.link,
       date: post.date,
       image: media?.source_url ?? null,
       alt: media?.alt_text ?? '',
+      author: {
+        name: post._embedded?.author?.[0]?.name || '',
+        avatarURL:
+          post._embedded?.author?.[0]?.avatar_urls?.['96'] ||
+          post._embedded?.author?.[0]?.avatar_urls?.['48'] ||
+          '',
+      },
+      hero: {
+        sourceURL: post._embedded?.['wp:featuredmedia']?.[0]?.source_url || '',
+        altTitle: post._embedded?.['wp:featuredmedia']?.[0]?.alt_text || post.title.rendered,
+      },
     };
   }
 
-  getPost(postId: number): Observable<RenderedWPPost> {
+  getPost(postId: string): Observable<RenderedWPPost> {
     return this.http
       .get<WPPost>(`${this.base}/wp-json/wp/v2/posts/${postId}`)
       .pipe(map((res) => this.parseData(res)));

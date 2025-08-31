@@ -1,1 +1,72 @@
-<p>blog-detailed works!</p>
+@if(!loading()){
+<div class="post">
+  <div class="breadcrumbs">
+    <span class="crumb"><a routerLink="/">Blog</a></span>
+    <span class="sep">›</span>
+    <span class="crumb is-current">{{ post.title }}</span>
+  </div>
+
+  <div class="hero-title">
+    <div class="title">{{ post.title }}</div>
+    <app-divider></app-divider>
+  </div>
+
+  <div class="meta">
+    @if(post.author){
+    <div class="author">
+      @if(post.author.avatarURL){
+      <div class="avatar">
+        <img [src]="post.author.avatarURL" [alt]="post.author.name" />
+      </div>
+      }
+      <div class="author-info">
+        <span class="name">{{ post.author.name }}</span>
+      </div>
+    </div>
+    }
+    <div class="date">
+      <span>{{ post.date | date : 'MMMM d, y' }}</span>
+    </div>
+  </div>
+
+  <!-- @if(!!post.hero){
+  <div class="hero-image">
+    <img [src]="post.hero.sourceURL" [alt]="post.hero.altTitle" />
+  </div>
+  } -->
+
+  <div class="content" [innerHTML]="post.content"></div>
+
+  <div class="share">
+    <span class="share-title">Share:</span>
+    <div class="icons">
+      <a [href]="'https://www.facebook.com/sharer/sharer.php?u='" target="_blank" rel="noopener"
+        >Fb</a
+      >
+      <a
+        [href]="'https://www.linkedin.com/sharing/share-offsite/?url='"
+        target="_blank"
+        rel="noopener"
+        >In</a
+      >
+      <a [href]="'https://twitter.com/intent/tweet?url='" target="_blank" rel="noopener">X</a>
+    </div>
+  </div>
+
+  <div class="pager">
+    <div class="prev">
+      <a routerLink="/posts"><span>←</span><span>Previous Article</span></a>
+    </div>
+    <div class="next">
+      <a routerLink="/posts"><span>Next Article</span><span>→</span></a>
+    </div>
+  </div>
+</div>
+} @if(loading()){
+<div class="state" *ngIf="loading">
+  <span>Loading…</span>
+</div>
+}
+<div class="state error" *ngIf="error">
+  <span>{{ error }}</span>
+</div>
