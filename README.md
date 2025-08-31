@@ -58,3 +58,31 @@ ng build --configuration production
 ```
 
 - The output will be in the dist/ folder.
+
+## 🧾 Assumptions & Extra Features
+
+Assumptions
+
+- The project will be run with Node.js LTS and the latest Angular CLI installed globally.
+
+- A modern browser environment (Chrome/Edge/Firefox/Safari) is assumed for running and testing the app.
+
+- API endpoints are available and return data in the expected JSON format.
+
+- The design system uses SCSS variables for theming (colors, spacing, typography).
+
+Extra Features
+
+- Responsive image handling using object-fit: cover for consistent scaling inside cards.
+
+- Dynamic card layout with aspect-ratio instead of fixed height for more flexible design.
+
+- Range helper for easily looping numbers (0..n) in Angular templates.
+
+- Lazy loading of images (loading="lazy") to improve performance.
+
+- Skeleton render for loading states: implemented lightweight skeleton components for cards and images to indicate loading while data is being fetched.
+
+- Box-shadow and hover effects for improved UI interactivity.
+
+- Reusable architecture with services, models, and components for maintainability and scalability.
