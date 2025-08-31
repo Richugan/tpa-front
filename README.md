@@ -24,8 +24,8 @@ Make sure you have **Node.js (LTS)** and **Angular CLI** installed globally.
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/angular-project.git
-cd angular-project
+git clone https://github.com/Richugan/tpa-front.git
+cd tpa-front
 
 # Install dependencies
 npm install
