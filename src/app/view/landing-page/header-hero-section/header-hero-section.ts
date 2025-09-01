@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { arrowToRightLogo } from '../../misc/svgs/logos';
 
 @Component({
   selector: 'app-header-hero-section',
@@ -7,9 +9,9 @@ import { Component } from '@angular/core';
   styleUrl: './header-hero-section.scss',
 })
 export class HeaderHeroSection {
-  mainColor = 'gray';
+  arrowToRightLogo: SafeHtml;
 
-  constructor() {
-    this.mainColor = document.body.style.getPropertyValue('--mainColor');
+  constructor(protected sanitizer: DomSanitizer) {
+    this.arrowToRightLogo = this.sanitizer.bypassSecurityTrustHtml(arrowToRightLogo);
   }
 }
