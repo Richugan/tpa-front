@@ -9,7 +9,7 @@ import { provideZonelessChangeDetection } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { RouterModule } from '@angular/router';
 
-fdescribe('DynamicPage', () => {
+describe('DynamicPage', () => {
   let fixture: ComponentFixture<DynamicPage>;
   let component: DynamicPage;
 

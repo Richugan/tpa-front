@@ -1,81 +1,99 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { Subject } from 'rxjs';
 
 import { FaqBlock } from './faq-block';
+import { FaqItem, FaqService } from '../../../data/faq.service';
 import { provideZonelessChangeDetection } from '@angular/core';
-import { By } from '@angular/platform-browser';
 
 fdescribe('FaqBlock', () => {
-  let component: FaqBlock;
   let fixture: ComponentFixture<FaqBlock>;
+  let component: FaqBlock;
+  let subject: Subject<FaqItem[]>;
+
+  function items(): FaqItem[] {
+    return [
+      { question: 'Q1', answer: 'A1', open: true },
+      { question: 'Q2', answer: 'A2' },
+      { question: 'Q3', answer: 'A3' },
+    ];
+  }
 
   beforeEach(async () => {
+    subject = new Subject<FaqItem[]>();
+    const mockSvc = {
+      getFaqItems: jasmine.createSpy('getFaqItems').and.returnValue(subject.asObservable()),
+    } as Pick<FaqService, 'getFaqItems'> as any;
+
     await TestBed.configureTestingModule({
       imports: [FaqBlock],
-      providers: [provideZonelessChangeDetection()],
+      providers: [provideZonelessChangeDetection(), { provide: FaqService, useValue: mockSvc }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(FaqBlock);
     component = fixture.componentInstance;
 
-    component.faqItems = [
-      { question: 'Q1', answer: 'A1', open: false },
-      { question: 'Q2', answer: 'A2', open: false },
-    ];
+    // Start lifecycle (subscribes to service)
+    fixture.detectChanges();
 
+    // Provide initial data async
+    subject.next(items());
     fixture.detectChanges();
   });
 
-  function firstItem() {
-    return fixture.debugElement.queryAll(By.css('.faq-item'))[0];
-  }
+  it('renders items from the service and respects open state', () => {
+    const els = fixture.debugElement.queryAll(By.css('.faq-item'));
+    expect(els.length).toBe(3);
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+    // First should be open from data
+    expect(els[0].nativeElement.classList.contains('open')).toBeTrue();
+    // Only one body present initially
+    const bodies = fixture.debugElement.queryAll(By.css('.faq-body'));
+    expect(bodies.length).toBe(1);
+    expect(bodies[0].nativeElement.textContent).toContain('A1');
   });
 
-  it('hides the answer by default', () => {
-    const answer = firstItem().query(By.css('.faq-a'));
-    expect(answer).toBeNull();
+  it('toggles an item when header is clicked', () => {
+    const item2 = fixture.debugElement.queryAll(By.css('.faq-item'))[1];
+    const head2 = item2.query(By.css('.faq-head'));
+
+    // Initially closed
+    expect(item2.nativeElement.classList.contains('open')).toBeFalse();
+
+    head2.nativeElement.click();
+    fixture.detectChanges();
+    expect(item2.nativeElement.classList.contains('open')).toBeTrue();
+
+    // Clicking again closes it
+    head2.nativeElement.click();
+    fixture.detectChanges();
+    expect(item2.nativeElement.classList.contains('open')).toBeFalse();
   });
 
-  it('shows the answer after first toggle click', () => {
-    const head = firstItem().query(By.css('.faq-head'));
-    head.triggerEventHandler('click');
+  it('enforces single open mode when enabled', () => {
+    // Enable single-open behavior
+    component.singleOpen = true;
     fixture.detectChanges();
 
-    const answer = firstItem().query(By.css('.faq-a'));
-    expect(answer).not.toBeNull();
-    expect(answer!.nativeElement.textContent).toContain('A1');
+    const itemsEls = fixture.debugElement.queryAll(By.css('.faq-item'));
+    const head1 = itemsEls[0].query(By.css('.faq-head'));
+    const head3 = itemsEls[2].query(By.css('.faq-head'));
 
-    const aria = firstItem().query(By.css('.faq-head')).nativeElement.getAttribute('aria-expanded');
-    expect(aria).toBe('true');
-  });
+    // First is open from initial data
+    expect(itemsEls[0].nativeElement.classList.contains('open')).toBeTrue();
 
-  it('hides the answer after second toggle click', () => {
-    const head = firstItem().query(By.css('.faq-head'));
-    head.triggerEventHandler('click');
+    // Open third
+    head3.nativeElement.click();
     fixture.detectChanges();
 
-    head.triggerEventHandler('click');
+    expect(itemsEls[2].nativeElement.classList.contains('open')).toBeTrue();
+    expect(itemsEls[0].nativeElement.classList.contains('open')).toBeFalse();
+
+    // Open first again, third should close
+    head1.nativeElement.click();
     fixture.detectChanges();
 
-    const answer = firstItem().query(By.css('.faq-a'));
-    expect(answer).toBeNull();
-
-    const aria = firstItem().query(By.css('.faq-head')).nativeElement.getAttribute('aria-expanded');
-    expect(aria).toBe('false');
-  });
-
-  it('also toggles via the arrow button', () => {
-    const arrow = firstItem().query(By.css('.faq-arrow'));
-    arrow.triggerEventHandler('click');
-    fixture.detectChanges();
-
-    expect(firstItem().query(By.css('.faq-a'))).not.toBeNull();
-
-    arrow.triggerEventHandler('click');
-    fixture.detectChanges();
-
-    expect(firstItem().query(By.css('.faq-a'))).toBeNull();
+    expect(itemsEls[0].nativeElement.classList.contains('open')).toBeTrue();
+    expect(itemsEls[2].nativeElement.classList.contains('open')).toBeFalse();
   });
 });

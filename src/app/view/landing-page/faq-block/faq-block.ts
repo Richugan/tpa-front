@@ -1,12 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject, signal, WritableSignal } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { dropdownIcon } from '../../misc/svgs/logos';
-
-interface FaqItem {
-  question: string;
-  answer: string;
-  open?: boolean;
-}
+import { FaqItem, FaqService } from '../../../data/faq.service';
 
 @Component({
   selector: 'app-faq-block',
@@ -14,51 +9,32 @@ interface FaqItem {
   templateUrl: './faq-block.html',
   styleUrl: './faq-block.scss',
 })
-export class FaqBlock {
+export class FaqBlock implements OnInit {
   mainColor = 'gray';
 
-  // Set open: true for the one you want expanded by default
-  faqItems: FaqItem[] = [
-    {
-      question: 'Dorem ipsum dolor sit amet, consectetur adipiscing elit?',
-      answer:
-        'Gorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur tempus urna at turpis condimentum lobortis. Ut commodo efficitur neque.',
-      open: true,
-    },
-    {
-      question: 'Vorem ipsum dolor sit amet, consectetur adipiscing elit?',
-      answer: 'Short answer text goes here. You can put any HTML-safe content you like.',
-    },
-    {
-      question: 'Dorem ipsum dolor sit amet, consectetur adipiscing elit?',
-      answer: 'Another short answer block. Keep it brief for visual parity.',
-    },
-    {
-      question: 'Vorem ipsum dolor sit amet, consectetur adipiscing elit?',
-      answer: 'Answer text for item 4.',
-    },
-    {
-      question: 'Dorem ipsum dolor sit amet, consectetur adipiscing elit?',
-      answer: 'Answer text for item 5.',
-    },
-  ];
+  // Items are provided by the service
+  faqItems: WritableSignal<FaqItem[]> = signal<FaqItem[]>([]);
 
   // Allow only one open at a time (set to false if you want multi-open)
   singleOpen = false;
 
   toggle(i: number) {
-    if (this.singleOpen) {
-      this.faqItems = this.faqItems.map((item, idx) => ({
-        ...item,
-        open: idx === i ? !item.open : false,
-      }));
-    } else {
-      this.faqItems[i].open = !this.faqItems[i].open;
-    }
+    this.faqItems.update((items) => {
+      if (this.singleOpen) {
+        const targetOpen = !items[i]?.open;
+        return items.map((item, idx) => ({ ...item, open: idx === i ? targetOpen : false }));
+      }
+      return items.map((item, idx) => (idx === i ? { ...item, open: !item.open } : item));
+    });
   }
 
   dropdownIcon: SafeHtml;
-  constructor(protected sanitizer: DomSanitizer) {
+  constructor(protected sanitizer: DomSanitizer, private faqService: FaqService) {
     this.dropdownIcon = this.sanitizer.bypassSecurityTrustHtml(dropdownIcon);
+  }
+
+  ngOnInit(): void {
+    // Subscribe asynchronously and set signal value; avoids NG0100 since it happens post-initial check
+    this.faqService.getFaqItems().subscribe((items) => this.faqItems.set(items));
   }
 }
