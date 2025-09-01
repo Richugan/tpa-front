@@ -38,7 +38,7 @@
           transition: color 0.3s;
 
           &:hover {
-            color: var(--mainHoverColor);
+            opacity: 0.8;
           }
         }
       }

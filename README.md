@@ -65,6 +65,8 @@ ng build --configuration production
 
 Assumptions
 
+- Some block are missed due it's just static information, I was focused more on various functionalities to show all the possibilities
+
 - The project will be run with Node.js LTS and the latest Angular CLI installed globally.
 
 - A modern browser environment (Chrome/Edge/Firefox/Safari) is assumed for running and testing the app.

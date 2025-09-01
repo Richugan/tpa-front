@@ -23,11 +23,10 @@ import {
 })
 export class App {
   constructor() {
-    this.getColorsFromBackend();
+    this.setBodyColors();
   }
 
-  //emitated function to fetch colors from backend
-  getColorsFromBackend() {
+  setBodyColors() {
     document.body.style.setProperty('--blackColor', BLACK_COLOR);
     document.body.style.setProperty('--whiteColor', WHITE_COLOR);
     document.body.style.setProperty('--grayColor', GRAY_COLOR);
