@@ -1,5 +1,4 @@
 import { inject, Injectable } from '@angular/core';
-import { HttpService } from './http.service';
 import { map, Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { WPPostRequestParams } from './wp-post-request-params';
@@ -20,7 +19,7 @@ export interface WPPostResponse {
   providedIn: 'root',
 })
 export class WPService {
-  constructor(private httpService: HttpService, private sanitizer: DomSanitizer) {}
+  constructor(private sanitizer: DomSanitizer) {}
   private http = inject(HttpClient);
   private base = API_URL;
   private multiplier = 1;
