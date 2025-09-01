@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { dropdownIcon, logoIcon, userLogo } from '../misc/svgs/logos';
 
 class NavLink {
   id: number;
@@ -28,7 +30,9 @@ export class PageHeader {
     window.location.href = '/';
   }
 
-  mainColor = 'gray';
+  dropdownIcon: SafeHtml;
+  logoIcon: SafeHtml;
+  userLogoIcon: SafeHtml;
 
   navLinks: NavLink[] = [
     new NavLink(0, 'Landing Page', '/', true, []),
@@ -36,7 +40,10 @@ export class PageHeader {
     new NavLink(2, 'Resources', '/', true, []),
     new NavLink(3, 'Learn', '/', true, []),
   ];
-  constructor() {
-    this.mainColor = document.body.style.getPropertyValue('--mainColor');
+
+  constructor(private sanitizer: DomSanitizer) {
+    this.dropdownIcon = this.sanitizer.bypassSecurityTrustHtml(dropdownIcon);
+    this.logoIcon = this.sanitizer.bypassSecurityTrustHtml(logoIcon);
+    this.userLogoIcon = this.sanitizer.bypassSecurityTrustHtml(userLogo);
   }
 }

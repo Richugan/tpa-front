@@ -5,6 +5,15 @@ import { PageHeader } from './view/page-header/page-header';
 import { CommonModule } from '@angular/common';
 import { PageFooter } from './view/page-footer/page-footer';
 import { FooterHeroSection } from './view/footer-hero-section/footer-hero-section';
+import {
+  BLACK_COLOR,
+  DARK_GRAY_COLOR,
+  GRAY_COLOR,
+  HOVERE_MAIN_COLOR as HOVERED_MAIN_COLOR,
+  MAIN_COLOR,
+  SECONDARY_COLOR,
+  WHITE_COLOR,
+} from './view/misc/colors';
 
 @Component({
   selector: 'app-root',
@@ -19,20 +28,12 @@ export class App {
 
   //emitated function to fetch colors from backend
   getColorsFromBackend() {
-    const blackColor = '#231F20';
-    const whiteColor = '#FFFCFF';
-    const grayColor = '#D8DBE2';
-    const darkGrayColor = '#666';
-    const mainColor = '#00ab80';
-    const hoveredMainColor = '#33bc99';
-    const secondaryColor = '#c3ff00';
-
-    document.body.style.setProperty('--blackColor', blackColor);
-    document.body.style.setProperty('--whiteColor', whiteColor);
-    document.body.style.setProperty('--grayColor', grayColor);
-    document.body.style.setProperty('--darkGrayColor', darkGrayColor);
-    document.body.style.setProperty('--mainColor', mainColor);
-    document.body.style.setProperty('--mainHoverColor', hoveredMainColor);
-    document.body.style.setProperty('--lightGreenColor', secondaryColor);
+    document.body.style.setProperty('--blackColor', BLACK_COLOR);
+    document.body.style.setProperty('--whiteColor', WHITE_COLOR);
+    document.body.style.setProperty('--grayColor', GRAY_COLOR);
+    document.body.style.setProperty('--darkGrayColor', DARK_GRAY_COLOR);
+    document.body.style.setProperty('--mainColor', MAIN_COLOR);
+    document.body.style.setProperty('--mainHoverColor', HOVERED_MAIN_COLOR);
+    document.body.style.setProperty('--lightGreenColor', SECONDARY_COLOR);
   }
 }
