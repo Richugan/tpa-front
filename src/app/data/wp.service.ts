@@ -22,7 +22,6 @@ export class WPService {
   constructor(private sanitizer: DomSanitizer) {}
   private http = inject(HttpClient);
   private base = API_URL;
-  private multiplier = 1;
 
   getPosts(opts: WPPostRequestParams): Observable<WPPostResponse> {
     let params = new HttpParams()
@@ -39,16 +38,10 @@ export class WPService {
             return this.parseData(p);
           });
 
-          //imitate that there is more posts for pagination
-          const multipliedPosts: RenderedWPPost[] = [];
-          for (let i = 0; i < this.multiplier; i++) {
-            multipliedPosts.push(...posts);
-          }
-
           return {
-            posts: multipliedPosts,
-            total: Number(res.headers.get('X-WP-Total') ?? 0) * this.multiplier,
-            totalPages: Number(res.headers.get('X-WP-TotalPages') ?? 0) * this.multiplier,
+            posts,
+            total: Number(res.headers.get('X-WP-Total') ?? 0),
+            totalPages: Number(res.headers.get('X-WP-TotalPages') ?? 0),
           };
         })
       );

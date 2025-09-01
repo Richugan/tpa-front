@@ -25,8 +25,8 @@ export class DynamicPage {
   error = signal<string | null>(null);
 
   posts = signal<RenderedWPPost[]>([]);
-  total = signal(0);
-  totalPages = signal(0);
+  total = signal(1);
+  totalPages = signal(1);
 
   leftArrow: SafeHtml;
   rightArrow: SafeHtml;
@@ -66,6 +66,11 @@ export class DynamicPage {
         this.posts.set(res.posts);
         this.total.set(res.total);
         this.totalPages.set(res.totalPages);
+
+        if (res.posts.length <= 0) {
+          this.error.set('Not found');
+        }
+
         this.loading.set(false);
       },
       error: (err) => {
@@ -73,6 +78,7 @@ export class DynamicPage {
         this.loading.set(false);
       },
     });
+    // this.filterPosts
   }
 
   rangeHelper(n: number): number[] {
