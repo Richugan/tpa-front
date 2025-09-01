@@ -3,20 +3,11 @@ import { Component } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { dropdownIcon, companyLogoIcon, userLogo, sideMenuIcon } from '../misc/svgs/logos';
 
-class NavLink {
+interface NavLink {
   id: number;
   label: string;
-  hasDropdown: boolean;
   url: string;
-  children: NavLink[] = [];
-
-  constructor(id: number, label: string, url: string, hasDropdown: boolean, children: []) {
-    this.id = id;
-    this.label = label;
-    this.url = url;
-    this.hasDropdown = hasDropdown;
-    this.children = children;
-  }
+  children: NavLink[];
 }
 
 @Component({
@@ -36,10 +27,10 @@ export class PageHeader {
   sideMenuIcon: SafeHtml;
 
   navLinks: NavLink[] = [
-    new NavLink(0, 'Landing Page', '/', true, []),
-    new NavLink(1, 'Dynamic Page', '/dynamic', true, []),
-    new NavLink(2, 'Resources', '/', true, []),
-    new NavLink(3, 'Learn', '/', true, []),
+    { id: 0, label: 'Landing Page', url: '/', children: [] },
+    { id: 1, label: 'Dynamic Page', url: '/dynamic', children: [] },
+    { id: 2, label: 'Resources', url: '/', children: [] },
+    { id: 3, label: 'Learn', url: '/', children: [] },
   ];
 
   constructor(private sanitizer: DomSanitizer) {

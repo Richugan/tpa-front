@@ -4,7 +4,7 @@
   @for(navLink of navLinks; track navLink.id; let idx = $index) {
   <a href="{{ navLink.url }}" class="nav-link">
     {{ navLink.label }}
-    @if(navLink.hasDropdown) {
+    @if(navLink.children) {
     <span class="arrow" [innerHTML]="dropdownIcon"></span>
     }
   </a>
