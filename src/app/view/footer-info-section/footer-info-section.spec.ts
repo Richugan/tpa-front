@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HeaderHeroSection } from './header-hero-section';
+import { FooterInfoSection } from './footer-info-section';
 
-describe('HeaderHeroSection', () => {
-  let component: HeaderHeroSection;
-  let fixture: ComponentFixture<HeaderHeroSection>;
+describe('FooterInfoSection', () => {
+  let component: FooterInfoSection;
+  let fixture: ComponentFixture<FooterInfoSection>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HeaderHeroSection],
+      imports: [FooterInfoSection],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(HeaderHeroSection);
+    fixture = TestBed.createComponent(FooterInfoSection);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

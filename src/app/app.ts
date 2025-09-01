@@ -4,7 +4,6 @@ import { RouterOutlet } from '@angular/router';
 import { PageHeader } from './view/page-header/page-header';
 import { CommonModule } from '@angular/common';
 import { PageFooter } from './view/page-footer/page-footer';
-import { FooterHeroSection } from './view/footer-hero-section/footer-hero-section';
 import {
   BLACK_COLOR,
   DARK_GRAY_COLOR,
@@ -14,10 +13,11 @@ import {
   SECONDARY_COLOR,
   WHITE_COLOR,
 } from './view/misc/colors';
+import { FooterInfoSection } from './view/footer-info-section/footer-info-section';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, PageHeader, PageFooter, FooterHeroSection],
+  imports: [RouterOutlet, PageHeader, PageFooter, FooterInfoSection],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })

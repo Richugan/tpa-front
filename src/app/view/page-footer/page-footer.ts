@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { FooterHeroSection } from '../footer-hero-section/footer-hero-section';
 import { FormsModule } from '@angular/forms';
 import { SafeHtml, DomSanitizer } from '@angular/platform-browser';
 import {

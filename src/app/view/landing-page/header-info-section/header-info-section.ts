@@ -3,12 +3,12 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { arrowToRightLogo } from '../../misc/svgs/logos';
 
 @Component({
-  selector: 'app-header-hero-section',
+  selector: 'app-header-info-section',
   imports: [],
-  templateUrl: './header-hero-section.html',
-  styleUrl: './header-hero-section.scss',
+  templateUrl: './header-info-section.html',
+  styleUrl: './header-info-section.scss',
 })
-export class HeaderHeroSection {
+export class HeaderInfoSection {
   arrowToRightLogo: SafeHtml;
 
   constructor(protected sanitizer: DomSanitizer) {
