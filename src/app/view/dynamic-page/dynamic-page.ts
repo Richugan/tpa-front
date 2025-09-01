@@ -5,6 +5,8 @@ import { WPPostRequestParams } from '../../data/wp-post-request-params';
 import { PageCard } from '../page-card/page-card';
 import { RouterModule } from '@angular/router';
 import { RenderedWPPost } from '../../data/rendered-wp-post';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { leftSwitchPageArrow, rightSwitchPageArrow } from '../misc/svgs/logos';
 
 @Component({
   selector: 'app-dynamic-page',
@@ -26,10 +28,16 @@ export class DynamicPage {
   total = signal(0);
   totalPages = signal(0);
 
-  constructor(protected wpService: WPService) {
+  leftArrow: SafeHtml;
+  rightArrow: SafeHtml;
+
+  constructor(protected wpService: WPService, protected sanitizer: DomSanitizer) {
     effect(() => {
       this.fetch();
     });
+
+    this.leftArrow = this.sanitizer.bypassSecurityTrustHtml(leftSwitchPageArrow);
+    this.rightArrow = this.sanitizer.bypassSecurityTrustHtml(rightSwitchPageArrow);
   }
 
   setPage(p: number) {

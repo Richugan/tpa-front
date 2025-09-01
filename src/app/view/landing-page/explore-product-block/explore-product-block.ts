@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { arrowToRightLogo } from '../../misc/svgs/logos';
 
 interface ProductTab {
   title: string;
@@ -19,8 +21,6 @@ interface ProductTab {
   styleUrl: './explore-product-block.scss',
 })
 export class ExploreProductBlock {
-  mainColor = 'gray';
-
   activeTabIndex = 0;
 
   productTabs: ProductTab[] = [
@@ -64,8 +64,9 @@ export class ExploreProductBlock {
     },
   ];
 
-  constructor() {
-    this.mainColor = document.body.style.getPropertyValue('--mainColor');
+  arrowToRightLogo: SafeHtml;
+  constructor(protected sanitizer: DomSanitizer) {
+    this.arrowToRightLogo = this.sanitizer.bypassSecurityTrustHtml(arrowToRightLogo);
   }
 
   setActiveTab(index: number) {

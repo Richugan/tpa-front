@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { dropdownIcon } from '../../misc/svgs/logos';
 
 interface FaqItem {
   question: string;
@@ -55,7 +57,8 @@ export class FaqBlock {
     }
   }
 
-  constructor() {
-    this.mainColor = document.body.style.getPropertyValue('--mainColor');
+  dropdownIcon: SafeHtml;
+  constructor(protected sanitizer: DomSanitizer) {
+    this.dropdownIcon = this.sanitizer.bypassSecurityTrustHtml(dropdownIcon);
   }
 }
