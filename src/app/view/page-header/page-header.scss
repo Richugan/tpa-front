@@ -10,7 +10,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem 3.75rem;
-  gap: 4rem;
+  flex-wrap: wrap;
 }
 
 .logo {
@@ -23,6 +23,8 @@
   gap: 2rem;
   margin: 0;
   padding: 0;
+  margin-left: 4rem;
+  flex-wrap: wrap;
 
   a {
     color: var(--blackColor);

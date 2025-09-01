@@ -77,13 +77,16 @@
     padding: 2rem;
     border-radius: 1rem;
     align-items: center;
+    flex-wrap: wrap;
 
     background: linear-gradient(180deg, var(--grayColor) 13.63%, var(--whiteColor) 81.93%);
 
     .product-image img {
-      width: 33rem;
-      height: 23.75rem;
+      max-height: 23.75rem;
       border-radius: 0.625rem;
+      width: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     .product-info {
