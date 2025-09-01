@@ -3,11 +3,10 @@ import { ActivatedRoute } from '@angular/router';
 import { WPService } from '../../../data/wp.service';
 import { RenderedWPPost } from '../../../data/rendered-wp-post';
 import { CommonModule } from '@angular/common';
-import { Divider } from '../../misc/divider/divider';
 
 @Component({
   selector: 'app-blog-detailed',
-  imports: [CommonModule, Divider],
+  imports: [CommonModule],
   templateUrl: './blog-detailed.html',
   styleUrl: './blog-detailed.scss',
 })

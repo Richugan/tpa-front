@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { Divider } from '../../misc/divider/divider';
 
 @Component({
   selector: 'app-header-hero-section',
-  imports: [Divider],
+  imports: [],
   templateUrl: './header-hero-section.html',
   styleUrl: './header-hero-section.scss',
 })

@@ -22,3 +22,17 @@ button {
     display: none;
   }
 }
+
+.divider-line {
+  width: 13.75rem;
+  height: 6px;
+  background: var(--mainColor);
+  border-radius: 2px;
+}
+
+//mobile view
+@media (width <= 480px) {
+  .divider-line {
+    height: 4px;
+  }
+}

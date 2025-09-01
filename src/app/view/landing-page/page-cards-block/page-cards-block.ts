@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
-import { Divider } from '../../misc/divider/divider';
 import { PageCard } from '../../page-card/page-card';
 import { RenderedWPPost } from '../../../data/rendered-wp-post';
 import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-page-cards-block',
-  imports: [Divider, PageCard, RouterModule],
+  imports: [PageCard, RouterModule],
   templateUrl: './page-cards-block.html',
   styleUrl: './page-cards-block.scss',
 })

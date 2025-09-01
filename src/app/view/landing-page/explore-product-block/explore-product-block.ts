@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Divider } from '../../misc/divider/divider';
 
 interface ProductTab {
   title: string;
@@ -15,7 +14,7 @@ interface ProductTab {
 
 @Component({
   selector: 'app-explore-product-block',
-  imports: [Divider],
+  imports: [],
   templateUrl: './explore-product-block.html',
   styleUrl: './explore-product-block.scss',
 })

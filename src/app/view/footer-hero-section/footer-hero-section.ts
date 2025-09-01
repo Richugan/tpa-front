@@ -1,9 +1,8 @@
 import { Component, signal } from '@angular/core';
-import { Divider } from '../misc/divider/divider';
 
 @Component({
   selector: 'app-footer-hero-section',
-  imports: [Divider],
+  imports: [],
   templateUrl: './footer-hero-section.html',
   styleUrl: './footer-hero-section.scss',
 })
