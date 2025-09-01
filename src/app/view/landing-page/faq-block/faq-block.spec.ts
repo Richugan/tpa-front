@@ -6,7 +6,7 @@ import { FaqBlock } from './faq-block';
 import { FaqItem, FaqService } from '../../../data/faq.service';
 import { provideZonelessChangeDetection } from '@angular/core';
 
-fdescribe('FaqBlock', () => {
+describe('FaqBlock', () => {
   let fixture: ComponentFixture<FaqBlock>;
   let component: FaqBlock;
   let subject: Subject<FaqItem[]>;
