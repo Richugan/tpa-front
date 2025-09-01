@@ -30,7 +30,7 @@
     @for (post of posts(); track $index) {
 
     <!-- imitation of click on page with id 1 -->
-    <app-page-card [card]="post" [routerLink]="`1`"></app-page-card>
+    <app-page-card [card]="post" [routerLink]="`${post.id}`"></app-page-card>
     <!-- <app-page-card [card]="card" [routerLink]="`dynamic/${card.id}`"></app-page-card> -->
 
     }

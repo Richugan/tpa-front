@@ -12,7 +12,7 @@ import { RouterModule } from '@angular/router';
 export class PageCardsBlock {
   pageCards: RenderedWPPost[] = [
     {
-      id: 0,
+      id: 1,
       title: 'Corem ipsum dolor',
       excerpt:
         'Worem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.',
@@ -34,7 +34,7 @@ export class PageCardsBlock {
       date: new Date().toString(),
     },
     {
-      id: 2,
+      id: 1,
       title: 'Yorem ipsum dolor',
       excerpt:
         'Yorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.',
@@ -45,7 +45,7 @@ export class PageCardsBlock {
       date: new Date().toString(),
     },
     {
-      id: 3,
+      id: 1,
       title: 'Morem ipsum dolor',
       excerpt:
         'Morem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.',
@@ -56,7 +56,7 @@ export class PageCardsBlock {
       date: new Date().toString(),
     },
     {
-      id: 4,
+      id: 1,
       title: 'Morem ipsum dolor',
       excerpt:
         'Morem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.',
