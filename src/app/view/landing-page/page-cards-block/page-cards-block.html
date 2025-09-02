@@ -6,7 +6,7 @@
 </div>
 
 <div class="page-card-content">
-  @for (card of pageCards; track $index; let i = $index) {
+  @for (card of pageCards(); track $index; let i = $index) {
 
   <!-- imitation of click on page with id 1 -->
   <!-- <app-page-card [card]="card" [routerLink]="`dynamic/1`"></app-page-card> -->

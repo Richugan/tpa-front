@@ -1,7 +1,7 @@
 <div class="faq-title">Frequently Asked Questions</div>
 
 <div class="faq-list">
-  @for (faqItem of faqItems(); track $index; let i = $index) {
+  @for(faqItem of faqItems(); track $index; let i = $index) {
   <div class="faq-item" [class.open]="faqItem.open">
     <div class="faq-item-inner">
       <div
