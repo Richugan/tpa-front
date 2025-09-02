@@ -28,7 +28,6 @@ Trade‑offs
 - Dynamic page rendering entries from the WordPress REST API.
 - Header submenu on hover with example links per top-level item.
 - Responsive layout (Flexbox/Grid) and SCSS theming variables.
-- Accessible markup where practical (roles for menus, buttons, etc.).
 - Unit tests for key components and behaviors.
 
 ---
@@ -108,4 +107,3 @@ Cards and hero sections use `object-fit: cover` on images. This makes the image 
 - Wire up Playwright E2E tests (submenu hover/click, card navigation, FAQ interactions).
 - Connect real API endpoints where mock services are used.
 - Expand accessibility testing and keyboard interactions.
-
