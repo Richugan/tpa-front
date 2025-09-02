@@ -1,92 +1,111 @@
-# Angular Project
+# TPA Frontend (Angular)
 
-A modern web application built with [Angular](https://angular.io/).  
-This project follows Angular best practices, featuring modular structure, reusable components, and responsive design.
+This is the frontend for the TPA project, built with Angular. It implements a landing page (hero, product exploration, cards grid, FAQ), a dynamic content page driven by the WordPress REST API, and a shared header/footer with a hoverable navigation submenu.
 
----
-
-## 🚀 Features
-
-- Angular 20+ with TypeScript
-- Modular architecture
-- Routing and lazy loading
-- Reusable components and services
-- State management (RxJS/Signals)
-- SCSS for styling
-- API integration with HttpClient
-- Responsive layout with Flexbox/Grid
+This document explains the project itself, why Angular was chosen, and how the codebase is organized so newcomers can navigate it quickly.
 
 ---
 
-## 📦 Installation
+## Why Angular?
 
-Make sure you have **Node.js (LTS)** and **Angular CLI** installed globally.
+Pros
+
+- Batteries included: routing, DI, forms, HTTP, and build tooling in one framework.
+- Standalone components and Signals: modern, ergonomic component model (Angular 16+).
+- TypeScript-first: strong typing and template checks by the compiler.
+- CLI and AOT: fast dev experience and optimized, consistent production builds.
+
+Trade‑offs
+
+- Template/DI concepts and RxJS can have a learning curve for newcomers.
+- Slightly larger baseline than micro-libraries; favors convention over minimalism.
+
+---
+
+## Features Implemented
+
+- Landing page with sections: header, explore product, cards grid, FAQ.
+- Dynamic page rendering entries from the WordPress REST API.
+- Header submenu on hover with example links per top-level item.
+- Responsive layout (Flexbox/Grid) and SCSS theming variables.
+- Accessible markup where practical (roles for menus, buttons, etc.).
+- Unit tests for key components and behaviors.
+
+---
+
+## Getting Started
+
+Requirements: Node.js (LTS) and Angular CLI installed globally.
 
 ```bash
-# Clone the repository
+# Clone
 git clone https://github.com/Richugan/tpa-front.git
 cd tpa-front
 
-# Install dependencies
+# Install deps
 npm install
+
+# Start dev server
+npm start
+# then open http://localhost:4200/
 ```
 
-## ▶️ Running the Application
+Build for production
 
 ```bash
-# Start development server
-ng serve
-
-# Open in browser
-http://localhost:4200/
+npm run build
+# Output in dist/ folder
 ```
 
-- Landing Page
-- Dynamic Page with posts from WP getted by REST API
-
-## 🧪 Running Tests
+Run unit tests
 
 ```bash
-# Unit tests
-ng test
+npm test
 ```
 
-- I wrote a few unit tests on evvery component.
+Optional E2E (suggested): Playwright works well here. If needed, we can add a ready-to-run Playwright setup with tests for the header submenu, cards navigation, and FAQ toggling.
 
-## 🏗️ Build for Production
+---
 
-```bash
-ng build --configuration production
-```
+## Project Structure
 
-- The output will be in the dist/ folder.
+- `public/`: static assets served as-is.
+- `src/`: application source.
+- `src/app/`: Angular app root.
+  - `app.ts`, `app.html`, `app.scss`: root component shell.
+  - `app.config.ts`, `app.routes.ts`: app configuration and routes.
+  - `data/`: services and models (e.g., `wp.service.ts`, `page-cards.service.ts`, interfaces like `rendered-wp-post.ts`).
+  - `environments/`: environment configuration (e.g., API URLs for dev/prod).
+  - `view/`: all UI components grouped by feature (landing page, dynamic page, shared parts like header/footer).
+- `styles.scss`: global styles.
 
-## 🧾 Assumptions & Extra Features
+Component folders typically include:
 
-Assumptions
+- `*.ts`: component class and metadata (selector, template, styles, inputs/outputs).
+- `*.html`: template markup and Angular control flow (`@for`, `@if`, bindings).
+- `*.scss`: styles scoped to that component.
+- `*.spec.ts`: unit tests for that component (rendering, inputs/outputs, interactions).
 
-- Some block are missed due it's just static information, I was focused more on various functionalities to show all the possibilities
+---
 
-- The project will be run with Node.js LTS and the latest Angular CLI installed globally.
+## Notes on Responsiveness & Images
 
-- A modern browser environment (Chrome/Edge/Firefox/Safari) is assumed for running and testing the app.
+Cards and hero sections use `object-fit: cover` on images. This makes the image fill its container proportionally without distortion; any overflow is cropped. The result is consistent card layouts even when source images have different aspect ratios.
 
-- API endpoints are available and return data in the expected JSON format.
+---
 
-- The design system uses SCSS variables for theming (colors, spacing, typography).
+## Assumptions
 
-Extra Features
+- Runs with Node.js LTS and the latest Angular CLI.
+- Modern browsers (Chrome/Edge/Firefox/Safari) for development and testing.
+- The WP API endpoint is reachable and returns expected JSON.
+- Theming uses SCSS variables for colors and other tokens.
 
-- Responsive image handling using object-fit: cover for consistent scaling inside cards.
+---
 
-- Dynamic card layout with aspect-ratio instead of fixed height for more flexible design.
+## Next Steps
 
-- Range helper for easily looping numbers (0..n) in Angular templates.
+- Wire up Playwright E2E tests (submenu hover/click, card navigation, FAQ interactions).
+- Connect real API endpoints where mock services are used.
+- Expand accessibility testing and keyboard interactions.
 
-- Lazy loading of images (loading="lazy") to improve performance.
-
-- Skeleton render for loading states: implemented lightweight skeleton components for cards and images to indicate loading while data is being fetched.
-
-- Box-shadow and hover effects for improved UI interactivity.
-
-- Reusable architecture with services, models, and components for maintainability and scalability.
