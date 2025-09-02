@@ -1,15 +1,25 @@
 <div class="logo" (click)="navigateToHome()" [innerHTML]="logoIcon"></div>
 
 <div class="nav-links">
-  @for(navLink of navLinks; track navLink.id; let idx = $index) {
-  <a href="{{ navLink.url }}" class="nav-link">
-    {{ navLink.label }}
-    @if(navLink.children) {
-    <span class="arrow" [innerHTML]="dropdownIcon"></span>
-    }
-  </a>
+  @for (navLink of navLinks; track navLink.id; let idx = $index) {
+    <div class="nav-item" [class.has-children]="(navLink.children?.length || 0) > 0">
+      <a href="{{ navLink.url }}" class="nav-link">
+        {{ navLink.label }}
+        @if (navLink.children?.length) {
+          <span class="arrow" [innerHTML]="dropdownIcon"></span>
+        }
+      </a>
+
+      @if (navLink.children?.length) {
+        <div class="dropdown" role="menu">
+          @for (child of navLink.children; track child.id) {
+            <a class="dropdown-link" href="{{ child.url }}" role="menuitem">{{ child.label }}</a>
+          }
+        </div>
+      }
+    </div>
   }
-</div>
+  </div>
 <div class="spacer" style="flex: 1"></div>
 
 <div class="nav-actions">

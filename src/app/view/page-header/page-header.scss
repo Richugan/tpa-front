@@ -26,6 +26,10 @@
   margin-left: 4rem;
   flex-wrap: wrap;
 
+  .nav-item {
+    position: relative;
+  }
+
   a {
     color: var(--blackColor);
     cursor: pointer;
@@ -37,6 +41,52 @@
     &:hover {
       opacity: 0.8;
     }
+  }
+
+  .arrow {
+    display: inline-flex;
+    transition: transform 0.15s ease-in-out;
+  }
+
+  .dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 12rem;
+    background: var(--whiteColor);
+    border: 1px solid var(--grayColor);
+    border-radius: 8px;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+    padding: 8px 0.5rem 0.5rem; /* top padding avoids hover gap */
+    z-index: 10;
+  }
+
+  /* Hover buffer to prevent flicker when moving cursor from link to menu */
+  .dropdown::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 0;
+    right: 0;
+    height: 8px;
+  }
+
+  .dropdown-link {
+    display: block;
+    padding: 0.5rem 0.75rem;
+    color: var(--blackColor);
+    text-decoration: none;
+    border-radius: 6px;
+
+    &:hover {
+      background: #f5f7f9;
+    }
+  }
+
+  .nav-item:hover > .dropdown,
+  .nav-item:focus-within > .dropdown {
+    display: block;
   }
 }
 
