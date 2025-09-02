@@ -1,6 +1,6 @@
 # TPA Frontend (Angular)
 
-This is the frontend for the TPA project, built with Angular. It implements a landing page (hero, product exploration, cards grid, FAQ), a dynamic content page driven by the WordPress REST API, and a shared header/footer with a hoverable navigation submenu.
+This is the frontend for the TPA project, built with Angular. It implements a landing page (product exploration, cards grid, FAQ), a dynamic content page driven by the WordPress REST API, and a shared header/footer with a hoverable navigation submenu.
 
 This document explains the project itself, why Angular was chosen, and how the codebase is organized so newcomers can navigate it quickly.
 
@@ -89,7 +89,7 @@ Component folders typically include:
 
 ## Notes on Responsiveness & Images
 
-Cards and hero sections use `object-fit: cover` on images. This makes the image fill its container proportionally without distortion; any overflow is cropped. The result is consistent card layouts even when source images have different aspect ratios.
+Cards use `object-fit: cover` on images. This makes the image fill its container proportionally without distortion; any overflow is cropped. The result is consistent card layouts even when source images have different aspect ratios.
 
 ---
 
