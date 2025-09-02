@@ -22,7 +22,7 @@ export class PageCardsService {
         date: now,
       },
       {
-        id: 2,
+        id: 1,
         title: 'Jorem ipsum dolor',
         excerpt:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.',
@@ -33,7 +33,7 @@ export class PageCardsService {
         date: now,
       },
       {
-        id: 3,
+        id: 1,
         title: 'Yorem ipsum dolor',
         excerpt:
           'Yorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.',
@@ -44,7 +44,7 @@ export class PageCardsService {
         date: now,
       },
       {
-        id: 4,
+        id: 1,
         title: 'Morem ipsum dolor',
         excerpt:
           'Morem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.',
@@ -55,7 +55,7 @@ export class PageCardsService {
         date: now,
       },
       {
-        id: 5,
+        id: 1,
         title: 'Morem ipsum dolor',
         excerpt:
           'Morem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.',

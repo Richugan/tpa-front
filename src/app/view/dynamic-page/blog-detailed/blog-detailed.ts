@@ -30,7 +30,6 @@ export class BlogDetailed implements OnInit {
       next: (post) => {
         this.post = post;
         this.loading.set(false);
-        console.log(!this.loading && !this.error);
       },
       error: (err) => {
         this.error = 'Failed to load post.';
